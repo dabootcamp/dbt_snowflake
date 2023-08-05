@@ -1,0 +1,24 @@
+version: 2
+
+models:
+  - name: channels
+    config:
+      schema: safe_data
+  - name: deliveries
+    config:
+      schema: safe_data
+  - name: drivers
+    config:
+      schema: safe_data
+  - name: hubs
+    config:
+      schema: safe_data
+  - name: orders
+    config:
+      schema: safe_data
+  - name: payments
+    config:
+      schema: safe_data
+  - name: stores
+    config:
+      schema: safe_data
