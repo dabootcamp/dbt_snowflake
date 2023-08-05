@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: dm_orders
-    description: Datamart Orders Table
+    description: Datamart de Ordenes - Delivery Center
     config:
       schema: service_data
     columns:
@@ -20,6 +20,14 @@ models:
         description: Order Id
       - name: order_status
         description: Estado de la Orden
+      - name: order_amount
+        description: Monto de la Orden (Reales)
+      - name: order_delivery_cost
+        description: Costo del Delivery (Reales)
+      - name: order_delivery_fee
+        description: Costo del Servicio (Reales)
+      - name: order_total_amount 
+        description: Monto total de la Orden (Reales)
       - name: channel_name
         description: Nombre del Canal
       - name: store_name

@@ -7,6 +7,11 @@ WITH payment_methods AS (
     FROM {{ ref('payments') }}
     GROUP BY 1
 )
+, deliveries AS (
+    SELECT *
+    FROM {{ ref('deliveries') }}
+    QUALIFY ROW_NUMBER() OVER(PARTITION BY DELIVERY_ORDER_ID ORDER BY DELIVERY_ID DESC) = 1
+)
 SELECT
     TO_DATE(o.ORDER_MOMENT_CREATED) AS DATE
   , MONTHNAME(o.ORDER_MOMENT_CREATED) AS MONTH
@@ -25,7 +30,7 @@ SELECT
   , o.ORDER_AMOUNT
   , o.ORDER_DELIVERY_COST
   , o.ORDER_DELIVERY_FEE
-  , o.ORDER_TOTAL_AMOUNT
+  , (o.ORDER_AMOUNT + o.ORDER_DELIVERY_COST + o.ORDER_DELIVERY_FEE) AS ORDER_TOTAL_AMOUNT
   , COALESCE(m.PAYMENT_METHODS, 'None') AS PAYMENT_METHODS
   , dri.DRIVER_MODAL AS DRIVER_TYPE
   , ROUND(d.DELIVERY_DISTANCE_METERS / 1000, 2) AS DISTANCE_KM
@@ -45,7 +50,7 @@ FROM {{ ref('orders') }} o
             ON h.HUB_ID = s.HUB_ID
     LEFT JOIN payment_methods m
             ON o.PAYMENT_ORDER_ID = m.PAYMENT_ORDER_ID
-    LEFT JOIN {{ ref('deliveries') }} d
+    LEFT JOIN deliveries d
             ON d.DELIVERY_ORDER_ID = o.ORDER_ID
     LEFT JOIN {{ ref('drivers') }} dri
             ON dri.DRIVER_ID = d.DRIVER_ID
