@@ -6,4 +6,4 @@ SELECT
   , DRIVER_ID
   , DELIVERY_DISTANCE_METERS
   , DELIVERY_STATUS
-FROM {{ source('delivery_center', 'deliveries') }}
+FROM {{ source('delivery_raw', 'deliveries') }}

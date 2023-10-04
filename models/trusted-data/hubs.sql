@@ -7,4 +7,4 @@ SELECT
   , HUB_STATE
   , HUB_LATITUDE
   , HUB_LONGITUDE
-FROM {{ source('delivery_center', 'hubs') }}
+FROM {{ source('delivery_raw', 'hubs') }}

@@ -36,10 +36,8 @@ models:
   +persist_docs:
     relation: true
     columns: true
-  safe-data:
+  trusted-data:
     materialized: table
-  service_data:
+  service-data:
     materialized: table
-    # Applies to all files under models/example/
-    #example:
-    #  
+

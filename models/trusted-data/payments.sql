@@ -8,4 +8,4 @@ SELECT
   , PAYMENT_FEE
   , PAYMENT_METHOD
   , PAYMENT_STATUS
-FROM {{ source('delivery_center', 'payments') }}
+FROM {{ source('delivery_raw', 'payments') }}

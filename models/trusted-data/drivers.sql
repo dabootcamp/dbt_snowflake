@@ -4,4 +4,4 @@ SELECT
     DRIVER_ID
   , DRIVER_MODAL
   , DRIVER_TYPE
-FROM {{ source('delivery_center', 'drivers') }}
+FROM {{ source('delivery_raw', 'drivers') }}

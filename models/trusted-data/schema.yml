@@ -1,0 +1,42 @@
+version: 2
+
+models:
+  - name: channels
+    config:
+      schema: trusted_data
+  - name: deliveries
+    config:
+      schema: trusted_data
+  - name: drivers
+    config:
+      schema: trusted_data
+  - name: hubs
+    config:
+      schema: trusted_data
+  - name: orders
+    config:
+      schema: trusted_data
+  - name: payments
+    config:
+      schema: trusted_data
+  - name: stores
+    config:
+      schema: trusted_data
+    columns:
+      - name: store_id
+        description: Id de la Tienda
+        tests:
+          - unique
+          - not_null
+      - name: hub_id
+        description: Id de Hub
+      - name: store_name
+        description: Nombre de la Tienda
+      - name: store_segment
+        description: Nombre del Segment
+      - name: store_plan_price
+        description: Precio del Plan de la Tienda
+      - name: store_latitude
+        description: Latitud de la Tienda
+      - name: store_longitude
+        description: Longitud de la Tienda

@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: dm_orders
-    description: Datamart de Ordenes - Delivery Center
+    description: Datamart de Ordenes - Delivery
     config:
       schema: service_data
     columns:

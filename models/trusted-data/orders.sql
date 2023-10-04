@@ -30,5 +30,5 @@ SELECT
   , ORDER_METRIC_EXPEDITON_SPEED_TIME
   , ORDER_METRIC_TRANSIT_TIME
   , ORDER_METRIC_CYCLE_TIME
-FROM {{ source('delivery_center', 'orders') }}
+FROM {{ source('delivery_raw', 'orders') }}
 WHERE ORDER_ID IS NOT NULL
