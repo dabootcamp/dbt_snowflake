@@ -1,34 +1,35 @@
 {{ config(materialized="table") }}
 
 SELECT
-    ORDER_ID
-  , COALESCE(STORE_ID, 0) AS STORE_ID
-  , COALESCE(CHANNEL_ID, 0) AS CHANNEL_ID
-  , PAYMENT_ORDER_ID
-  , DELIVERY_ORDER_ID
-  , UPPER(TRIM(ORDER_STATUS)) AS ORDER_STATUS
-  , COALESCE(ORDER_AMOUNT, 0) AS ORDER_AMOUNT
-  , COALESCE(ORDER_DELIVERY_FEE, 0) AS ORDER_DELIVERY_FEE
-  , COALESCE(ORDER_DELIVERY_COST, 0) AS ORDER_DELIVERY_COST
-  , ORDER_CREATED_HOUR
-  , ORDER_CREATED_MINUTE
-  , ORDER_CREATED_DAY
-  , ORDER_CREATED_MONTH
-  , ORDER_CREATED_YEAR
-  , ORDER_MOMENT_CREATED
-  , ORDER_MOMENT_ACCEPTED
-  , ORDER_MOMENT_READY
-  , ORDER_MOMENT_COLLECTED
-  , ORDER_MOMENT_IN_EXPEDITION
-  , ORDER_MOMENT_DELIVERING
-  , ORDER_MOMENT_DELIVERED
-  , ORDER_MOMENT_FINISHED
-  , ORDER_METRIC_COLLECTED_TIME
-  , ORDER_METRIC_PAUSED_TIME
-  , ORDER_METRIC_PRODUCTION_TIME
-  , ORDER_METRIC_WALKING_TIME
-  , ORDER_METRIC_EXPEDITON_SPEED_TIME
-  , ORDER_METRIC_TRANSIT_TIME
-  , ORDER_METRIC_CYCLE_TIME
+    DISTINCT
+    order_id
+  , COALESCE(store_id, 0) AS store_id
+  , COALESCE(channel_id, 0) AS channel_id
+  , payment_order_id
+  , delivery_order_id
+  , UPPER(TRIM(order_status)) AS order_status
+  , COALESCE(order_amount, 0) AS order_amount
+  , COALESCE(order_delivery_fee, 0) AS order_delivery_fee
+  , COALESCE(order_delivery_cost, 0) AS order_delivery_cost
+  , order_created_hour
+  , order_created_minute
+  , order_created_day
+  , order_created_month
+  , order_created_year
+  , order_moment_created
+  , order_moment_accepted
+  , order_moment_ready
+  , order_moment_collected
+  , order_moment_in_expedition
+  , order_moment_delivering
+  , order_moment_delivered
+  , order_moment_finished
+  , order_metric_collected_time
+  , order_metric_paused_time
+  , order_metric_production_time
+  , order_metric_walking_time
+  , order_metric_expediton_speed_time
+  , order_metric_transit_time
+  , order_metric_cycle_time
 FROM {{ source('delivery_raw', 'orders') }}
-WHERE ORDER_ID IS NOT NULL
+WHERE order_id IS NOT NULL
