@@ -2,9 +2,9 @@
 version: 2
 
 sources:
-  - name: delivery_center
-    database: delivery_center  
-    schema: raw_data 
+  - name: delivery_raw
+    database: delivery 
+    schema: raw
     tables:
       - name: channels
       - name: deliveries
